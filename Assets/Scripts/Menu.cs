@@ -16,7 +16,6 @@ public class MenuController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleMenu();
-            
         }
     }
 
@@ -25,5 +24,14 @@ public class MenuController : MonoBehaviour
         // Перевіряємо, чи меню відображене і змінюємо його стан
         bool isMenuActive = menuPanel.activeSelf;
         menuPanel.SetActive(!isMenuActive);
+
+        if (!isMenuActive)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 }
