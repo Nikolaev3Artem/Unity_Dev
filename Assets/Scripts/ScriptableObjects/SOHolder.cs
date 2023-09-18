@@ -4,39 +4,8 @@ using UnityEngine;
 
 public class SOHolder : MonoBehaviour
 {
-    public ItemSO itemData;
-    private bool pickUp;
+    [SerializeField] private ItemSO itemData;
 
-    private void Start()
-    {
-        pickUp = false;
+    public ItemSO ItemData { get => itemData; }
 
-    }
-    private void Update()
-    {
-        if (pickUp && Input.GetKeyDown(KeyCode.T))
-        {
-            PickUp();
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collectable)
-    {
-        if (collectable.gameObject.CompareTag("Player"))
-        {
-            pickUp = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collectable)
-    {
-        if (collectable.gameObject.CompareTag("Player"))
-        {
-            pickUp = false;
-        }
-    }
-
-    void PickUp()
-    {
-        Destroy(gameObject);
-    }
 }
