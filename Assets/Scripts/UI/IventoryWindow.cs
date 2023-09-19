@@ -7,7 +7,8 @@ public class IventoryWindow : MonoBehaviour
 {
     [SerializeField] Inventory targetInventory;
     [SerializeField] RectTransform itemsPanel;
-    List<GameObject> drawnIcons = new List<GameObject>();
+    Dictionary<ItemSO, GameObject> drawnIcons = new Dictionary<ItemSO, GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,26 +16,36 @@ public class IventoryWindow : MonoBehaviour
         Redraw();
     }
 
-    void OnItemAdded(ItemSO obj) => Redraw();
-    
+    void OnItemAdded(ItemSO item, int itemCount)
+    {
+        Redraw();
+    }
+
     void Redraw()
     {
         ClearDown();
-        for(var i = 0; i < targetInventory.InventoryItems.Count; i++)
+        foreach (var itemEntry in targetInventory.InventoryItems)
         {
-            var item  = targetInventory.InventoryItems[i];
-            var icon = new GameObject("Icon");
-            icon.AddComponent<Image>().sprite = item.Sprite;
-            icon.transform.SetParent(itemsPanel);
-            drawnIcons.Add(icon);
+            var item = itemEntry.Key;
+            var itemCount = itemEntry.Value;
+
+            // Перевіряємо, чи іконка для цього предмета вже додана
+            if (!drawnIcons.ContainsKey(item))
+            {
+                var icon = new GameObject("Icon");
+                icon.AddComponent<Image>().sprite = item.Sprite;
+                icon.transform.SetParent(itemsPanel);
+                drawnIcons[item] = icon;
+            }
+            Debug.Log(item.name + " " + item.Amount);
         }
     }
 
     void ClearDown()
     {
-        for(var i = 0; i < drawnIcons.Count; i++)
+        foreach (var iconEntry in drawnIcons)
         {
-            Destroy(drawnIcons[i]);
+            Destroy(iconEntry.Value);
         }
         drawnIcons.Clear();
     }
