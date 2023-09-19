@@ -1,14 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
     [SerializeField] List<ItemSO> StartItems = new List<ItemSO>();
-    public List<ItemSO> InventoryItems = new List<ItemSO>();
-    public Action<ItemSO> onItemAdded;
+    public Dictionary<ItemSO, int> InventoryItems = new Dictionary<ItemSO, int>();
+    public Action<ItemSO, int> onItemAdded;
     private bool pickUp;
     private ItemSO item_data;
     private GameObject game_obj;
@@ -18,7 +16,7 @@ public class Inventory : MonoBehaviour
     {
         pickUp = false;
 
-        InventoryItems = new List<ItemSO>();
+        InventoryItems = new Dictionary<ItemSO, int>();
         for (var i = 0; i < StartItems.Count; i++)
         {
             AddItem(StartItems[i]);
@@ -27,8 +25,19 @@ public class Inventory : MonoBehaviour
 
     void AddItem(ItemSO item)
     {
-        InventoryItems.Add(item);
-        onItemAdded?.Invoke(item);
+        if (InventoryItems.ContainsKey(item))
+        {
+            // якщо предмет уже Ї в ≥нвентар≥, зб≥льшуЇмо к≥льк≥сть на 1.
+            item.Amount++;
+        }
+        else
+        {
+            // якщо предмету немаЇ в ≥нвентар≥, додаЇмо його з к≥льк≥стю 1.
+            item.Amount = 1;
+            InventoryItems[item] = 1;
+        }
+
+        onItemAdded?.Invoke(item, InventoryItems[item]);
     }
 
     private void Update()
@@ -39,6 +48,7 @@ public class Inventory : MonoBehaviour
             AddItem(item_data);
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collectable)
     {
         if (collectable.gameObject.CompareTag("Collectable"))

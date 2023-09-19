@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public int maxDashCharges = 3;
     public float dashCooldown = 5.0f;
     public float dashDuration = 0.1f;
-    public float dashSpeed = 20.0f; // Швидкість під час деша
+    public float dashSpeed = 10.0f; // Швидкість під час деша
 
     public int dashCharges = 3;
     private bool isDashing = false;
