@@ -29067,6 +29067,14 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 202332568309643309, guid: d4e84d4cfa7515b4eae8a7904da128c4, type: 3}
+      propertyPath: normalSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 202332568309643309, guid: d4e84d4cfa7515b4eae8a7904da128c4, type: 3}
+      propertyPath: sprintSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1091626832233472134, guid: d4e84d4cfa7515b4eae8a7904da128c4, type: 3}
       propertyPath: m_Name
       value: Player
