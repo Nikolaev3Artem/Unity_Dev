@@ -25,7 +25,7 @@ public class Inventory : MonoBehaviour
 
     void AddItem(ItemSO item)
     {
-        if (InventoryItems.ContainsKey(item))
+        if (InventoryItems.ContainsKey(item) && item.Stackable)
         {
             // якщо предмет уже Ї в ≥нвентар≥, зб≥льшуЇмо к≥льк≥сть на 1.
             item.Amount++;
@@ -42,7 +42,7 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        if (pickUp && Input.GetKeyDown(KeyCode.T))
+        if (pickUp && Input.GetKeyDown(KeyCode.E))
         {
             PickUp(game_obj);
             AddItem(item_data);

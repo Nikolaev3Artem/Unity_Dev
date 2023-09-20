@@ -10,5 +10,7 @@ public class ItemSO : ScriptableObject
     public string Description;
     public int Weight;
     public int Amount;
+    public bool Stackable;
+    public int MaxStack;
 
 }

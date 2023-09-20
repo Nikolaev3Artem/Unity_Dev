@@ -30,7 +30,7 @@ public class IventoryWindow : MonoBehaviour
             var itemCount = itemEntry.Value;
 
             // Перевіряємо, чи іконка для цього предмета вже додана
-            if (!drawnIcons.ContainsKey(item))
+            if(!drawnIcons.ContainsKey(item))
             {
                 var icon = new GameObject("Icon");
                 icon.AddComponent<Image>().sprite = item.Sprite;
