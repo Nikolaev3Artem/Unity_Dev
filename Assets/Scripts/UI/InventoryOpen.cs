@@ -15,7 +15,7 @@ public class InventoryOpen : MonoBehaviour
     private void Update()
     {
         // Відкриття і закриття меню за допомогою клавіші "Esc"
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             ToggleMenu();
         }
