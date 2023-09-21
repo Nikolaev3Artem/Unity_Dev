@@ -1,48 +1,57 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] List<ItemSO> StartItems = new List<ItemSO>();
-    public Dictionary<ItemSO, int> InventoryItems = new Dictionary<ItemSO, int>();
-    public Action<ItemSO, int> onItemAdded;
+    public List<ItemSO> InventoryItems = new List<ItemSO>();
+    public event EventHandler OnItemListChanged;
     private bool pickUp;
     private ItemSO item_data;
     private GameObject game_obj;
+    public int inventoryMaxSize = 20;
 
     // Start is called before the first frame update
     void Awake()
     {
         pickUp = false;
-
-        InventoryItems = new Dictionary<ItemSO, int>();
-        for (var i = 0; i < StartItems.Count; i++)
-        {
-            AddItem(StartItems[i]);
-        }
+        InventoryItems = new List<ItemSO>();
     }
 
     void AddItem(ItemSO item)
     {
-        if (InventoryItems.ContainsKey(item) && item.Stackable)
+        if (item.Stackable)
         {
-            // якщо предмет уже Ї в ≥нвентар≥, зб≥льшуЇмо к≥льк≥сть на 1.
-            item.Amount++;
+            bool ItemAlreadyInInventory = false;
+            foreach (ItemSO InvItem in InventoryItems)
+            {
+                if (InvItem.Name == item.Name)
+                {
+                    InvItem.Amount++;
+                    ItemAlreadyInInventory = true;
+                }
+            }
+            if(!ItemAlreadyInInventory)
+            {
+                InventoryItems.Add(item);
+            }
         }
         else
         {
-            // якщо предмету немаЇ в ≥нвентар≥, додаЇмо його з к≥льк≥стю 1.
-            item.Amount = 1;
-            InventoryItems[item] = 1;
+            InventoryItems.Add(item);
         }
+        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+    }
 
-        onItemAdded?.Invoke(item, InventoryItems[item]);
+    public List<ItemSO> GetItemList()
+    {
+        return InventoryItems;
     }
 
     private void Update()
     {
-        if (pickUp && Input.GetKeyDown(KeyCode.E))
+        if (pickUp && Input.GetKeyDown(KeyCode.E) && InventoryItems.Count < inventoryMaxSize)
         {
             PickUp(game_obj);
             AddItem(item_data);

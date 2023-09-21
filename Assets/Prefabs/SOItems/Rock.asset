@@ -16,6 +16,7 @@ MonoBehaviour:
   Name: Rock
   Description: 123123
   Weight: 1
-  Amount: 3
+  Amount: 1
   Stackable: 1
-  MaxStack: 2
+  MaxStack: 1
+  id: 51
