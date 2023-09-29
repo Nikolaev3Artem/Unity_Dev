@@ -5,16 +5,19 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public GameObject Player;
     public List<ItemSO> InventoryItems = new List<ItemSO>();
     public event EventHandler OnItemListChanged;
     private bool pickUp;
     private ItemSO item_data;
     private GameObject game_obj;
     public int inventoryMaxSize = 20;
+    private Rigidbody2D player_rb;
 
     // Start is called before the first frame update
     void Awake()
     {
+        player_rb = Player.GetComponent<Rigidbody2D>();
         pickUp = false;
         InventoryItems = new List<ItemSO>();
     }
@@ -28,18 +31,25 @@ public class Inventory : MonoBehaviour
             {
                 if (InvItem.Name == item.Name)
                 {
-                    InvItem.Amount++;
+                    player_rb.drag += item.Weight;
+                    InvItem.Amount += item.Amount;
                     ItemAlreadyInInventory = true;
+
                 }
             }
-            if(!ItemAlreadyInInventory)
+            if (!ItemAlreadyInInventory)
             {
+                player_rb.drag += item.Weight;
                 InventoryItems.Add(item);
+                item.Amount = 1;
             }
+        
         }
         else
         {
+            player_rb.drag += item.Weight;
             InventoryItems.Add(item);
+            item.Amount = 1;
         }
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
