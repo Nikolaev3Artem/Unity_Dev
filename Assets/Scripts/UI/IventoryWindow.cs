@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using static UnityEditor.Progress;
 
 public class IventoryWindow : MonoBehaviour
 {
@@ -28,36 +29,41 @@ public class IventoryWindow : MonoBehaviour
         ClearDown();
         foreach (var item in targetInventory.GetItemList())
         {
-            Debug.Log(item);
-            // Создайте игровой объект для ячейки инвентаря
-            var icon = new GameObject("Icon");
-
-            // Добавьте компонент Image для отображения изображения предмета
-            var imageComponent = icon.AddComponent<Image>();
-            imageComponent.sprite = item.Sprite;
-            icon.transform.SetParent(itemsPanel);
-
-            if (item.Stackable)
-            {
-
-                // Создайте текстовый объект для отображения количества предметов
-                var textAmount = new GameObject("AmountText").AddComponent<Text>();
-                textAmount.text = item.Amount.ToString();
-                textAmount.color = Color.white;
-                textAmount.font = AmountFont;
-                textAmount.alignment = TextAnchor.LowerRight;
-
-                // Установите родителей для объектов
-                textAmount.transform.SetParent(icon.transform);
-
-                // Установите позиции и размеры текста (может потребоваться доработка в зависимости от вашего дизайна)
-                textAmount.rectTransform.anchoredPosition = new Vector2(0, 0); // Установите позицию
-                textAmount.rectTransform.sizeDelta = new Vector2(40, 40); // Установите размер
-            }
-
-            // Добавьте объект в словарь drawnIcons
-            drawnIcons.Add(icon);
+            AddIcon(item);
         }
+        
+    }
+
+    void AddIcon(ItemSO item)
+    {
+        // Создайте игровой объект для ячейки инвентаря
+        var icon = new GameObject("Icon");
+
+        // Добавьте компонент Image для отображения изображения предмета
+        var imageComponent = icon.AddComponent<Image>();
+        imageComponent.sprite = item.Sprite;
+        icon.transform.SetParent(itemsPanel);
+
+        if (item.Stackable)
+        {
+
+            // Создайте текстовый объект для отображения количества предметов
+            var textAmount = new GameObject("AmountText").AddComponent<Text>();
+            textAmount.text = item.Amount.ToString();
+            textAmount.color = Color.white;
+            textAmount.font = AmountFont;
+            textAmount.alignment = TextAnchor.LowerRight;
+
+            // Установите родителей для объектов
+            textAmount.transform.SetParent(icon.transform);
+
+            // Установите позиции и размеры текста (может потребоваться доработка в зависимости от вашего дизайна)
+            textAmount.rectTransform.anchoredPosition = new Vector2(0, 0); // Установите позицию
+            textAmount.rectTransform.sizeDelta = new Vector2(40, 40); // Установите размер
+        }
+
+        // Добавьте объект в словарь drawnIcons
+        drawnIcons.Add(icon);
     }
 
     void ClearDown()
