@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6fcc6d3032e37594383ccdc1e3efa315
+guid: 0d3fc9a5f7e65024ba507fcf126874d8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: InventoryV3Upgraded_0
+      name: UIBars 1_0
       rect:
         serializedVersion: 2
-        x: 133
-        y: 0
-        width: 304
-        height: 320
+        x: 0
+        y: 32
+        width: 128
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79656a012c96c0747b0f834604905ae3
-      internalID: -1817803462
+      spriteID: 9299736dd502dc74bb225c0f56c39be2
+      internalID: -1265674350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: InventoryV3Upgraded_1
+      name: UIBars 1_1
       rect:
         serializedVersion: 2
-        x: 495
-        y: 0
-        width: 304
-        height: 320
+        x: 129
+        y: 32
+        width: 128
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b11631b3c52255744b71880093d190be
-      internalID: -2141886770
+      spriteID: 6896e32e85d53c94292bb6fc9bd47016
+      internalID: 666437669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: InventoryV3Upgraded_2
+      name: UIBars 1_2
       rect:
         serializedVersion: 2
-        x: 870
-        y: 0
-        width: 304
-        height: 320
+        x: 2
+        y: 16
+        width: 92
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,8 +166,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9412816b23518643a57a81950e67c5d
-      internalID: -143433625
+      spriteID: 5089b46ee18eb9c448e751205151e3ff
+      internalID: -1144754690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIBars 1_3
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 16
+        width: 92
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a18f7901b2552b7419bce15cec7c0438
+      internalID: 1364585578
       vertices: []
       indices: 
       edges: []
@@ -183,9 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      InventoryV3Upgraded_0: -1817803462
-      InventoryV3Upgraded_1: -2141886770
-      InventoryV3Upgraded_2: -143433625
+      UIBars 1_0: -1265674350
+      UIBars 1_1: 666437669
+      UIBars 1_2: -1144754690
+      UIBars 1_3: 1364585578
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
