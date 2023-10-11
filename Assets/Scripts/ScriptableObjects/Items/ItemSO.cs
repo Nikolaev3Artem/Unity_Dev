@@ -13,4 +13,5 @@ public class ItemSO : ScriptableObject
     public int Amount;
     public bool Stackable;
     public int MaxStack;
+    public int collectableExp;
 }

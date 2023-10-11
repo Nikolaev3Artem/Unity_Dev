@@ -15,7 +15,8 @@ MonoBehaviour:
   Sprite: {fileID: 21300000, guid: 38058a6951f402e47b2eb8e62f15b1a0, type: 3}
   Name: Stick
   Description: 123123
-  Weight: 5
+  Weight: 1
   Amount: 4
   Stackable: 1
   MaxStack: 2
+  collectableExp: 50

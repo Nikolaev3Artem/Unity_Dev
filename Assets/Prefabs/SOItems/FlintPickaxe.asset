@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dafce55390ea13140ac2ef8b521d09f7, type: 3}
-  m_Name: Rock
+  m_Name: FlintPickaxe
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: e0ad189998d8bdf44afc78975a494ba5, type: 3}
-  Name: Rock
+  Sprite: {fileID: 21300000, guid: 3c757070f038c0442a84697e4c12308f, type: 3}
+  Name: FlintPiclaxe
   Description: 123123
-  Weight: 1
+  Weight: 2
   Amount: 1
-  Stackable: 1
-  MaxStack: 3
-  collectableExp: 60
+  Stackable: 0
+  MaxStack: 1
