@@ -8,4 +8,5 @@ public class PlayerData : MonoBehaviour
     public int exp;
     public int level;
     public int armor;
+    public GameObject XPBar;
 }
