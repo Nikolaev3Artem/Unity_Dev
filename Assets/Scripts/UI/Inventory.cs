@@ -13,6 +13,8 @@ public class Inventory : MonoBehaviour
     private GameObject game_obj;
     public int inventoryMaxSize = 20;
     private Rigidbody2D player_rb;
+    private GameObject XPBar;
+    private int player_exp;
 
     // Start is called before the first frame update
     void Awake()
@@ -20,6 +22,9 @@ public class Inventory : MonoBehaviour
         player_rb = Player.GetComponent<Rigidbody2D>();
         pickUp = false;
         InventoryItems = new List<ItemSO>();
+        XPBar = Player.GetComponent<PlayerData>().XPBar;
+        player_exp = Player.GetComponent<PlayerData>().exp;
+
     }
 
     void AddItem(ItemSO item)
@@ -34,7 +39,7 @@ public class Inventory : MonoBehaviour
                     player_rb.drag += item.Weight;
                     InvItem.Amount += item.Amount;
                     ItemAlreadyInInventory = true;
-
+                    XPBar.GetComponent<XPBar>().SetXPBarValue(item.collectableExp);
                 }
             }
             if (!ItemAlreadyInInventory)
@@ -42,6 +47,7 @@ public class Inventory : MonoBehaviour
                 player_rb.drag += item.Weight;
                 InventoryItems.Add(item);
                 item.Amount = 1;
+                XPBar.GetComponent<XPBar>().SetXPBarValue(item.collectableExp);
             }
         
         }
@@ -50,6 +56,7 @@ public class Inventory : MonoBehaviour
             player_rb.drag += item.Weight;
             InventoryItems.Add(item);
             item.Amount = 1;
+            XPBar.GetComponent<XPBar>().SetXPBarValue(item.collectableExp);
         }
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
