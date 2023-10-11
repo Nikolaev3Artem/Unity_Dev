@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Rock
   Description: 123123
   Weight: 1
-  Amount: 2
+  Amount: 1
   Stackable: 1
   MaxStack: 3
-  collectableExp: 1
+  collectableExp: 60
