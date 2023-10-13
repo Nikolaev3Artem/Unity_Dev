@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/New Island.unity
     guid: 6cb68ab3923d56c4386de9fe6205e59a
+  - enabled: 0
+    path: Assets/Scenes/TestScene.unity
+    guid: dbbdcf3d9bab9438ebc47fc5621e7794
+  - enabled: 1
+    path: Assets/Scenes/Map.unity
+    guid: 51d176de6bd944b57ab926879e89d097
+  - enabled: 1
+    path: Assets/Scenes/Test Scene.unity
+    guid: 8980ea39b7e9242a8bd5135925c86ff8
   m_configObjects: {}
