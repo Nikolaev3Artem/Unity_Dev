@@ -10,18 +10,17 @@ public class XPBar : MonoBehaviour
     public GameObject Player;
     private Text _PlayerLvlText;
     private PlayerData _player_data;
-    /// <summary>
-    /// Sets the health bar value
-    /// </summary>
-    /// <param name="value">should be between 0 to 1</param>
+
     public void SetXPBarValue(int value)
     {
         // Оновити досвід
         _player_data.exp += value;
+        // Міняємо данні слайдера відповідно до данних гравця
         XPBar_Slider.value = _player_data.exp;
         // Перевірити, чи досвід перевищив максимальне значення
         if (_player_data.exp >= XPBar_Slider.maxValue)
         {
+            // Дізнаємось залишок рівня після його підняття
             int excessExp = _player_data.exp - (int)XPBar_Slider.maxValue;
 
             // Збільшити рівень і оновити досвід
@@ -45,19 +44,11 @@ public class XPBar : MonoBehaviour
         XPBar_Slider.value = _player_data.exp;
     }
 
-
-    public static float GetXPBarValue()
-    {
-        return XPBar_Slider.value;
-    }
-
-    /// <summary>
-    /// Initialize the variable
-    /// </summary>
-    /// 
     private void Start()
     {
+        // Получаємо слайдер
         XPBar_Slider = GetComponent<Slider>();
+        // Получаємо данні користувача
         _player_data = Player.GetComponent<PlayerData>();
     }
 }
