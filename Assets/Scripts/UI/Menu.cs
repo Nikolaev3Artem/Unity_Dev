@@ -6,25 +6,26 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
-        // Приховуємо панель меню при початковому завантаженні гри
+        // При початковому завантаженні гри приховуємо панель меню
         menuPanel.SetActive(false);
     }
 
     private void Update()
     {
-        // Відкриття і закриття меню за допомогою клавіші "Esc"
+        // Відкриваємо та закриваємо меню за допомогою клавіші "Esc"
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ToggleMenu();
+            ToggleMenu(); // Викликаємо функцію для перемикання відображення меню
         }
     }
 
     private void ToggleMenu()
     {
-        // Перевіряємо, чи меню відображене і змінюємо його стан
+        // Перевіряємо, чи меню відображене, і змінюємо його стан
         bool isMenuActive = menuPanel.activeSelf;
         menuPanel.SetActive(!isMenuActive);
 
+        // Якщо меню відкрите, зупиняємо час гри (змінюємо часовий масштаб на 0), інакше відновлюємо час гри (часовий масштаб 1)
         if (!isMenuActive)
         {
             Time.timeScale = 0;
