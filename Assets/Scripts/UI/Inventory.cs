@@ -67,6 +67,11 @@ public class Inventory : MonoBehaviour
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    public List<ItemSO> GetItemList()
+    {
+        return InventoryItems;
+    }
+
     private void Update()
     {
         // Слідкуємо за підбором предмету, за допомогою клавіші, pickUp перевірка чи ігрок близько до предмету
