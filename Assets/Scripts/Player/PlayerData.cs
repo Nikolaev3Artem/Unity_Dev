@@ -6,6 +6,7 @@ public class PlayerData : MonoBehaviour
 {
     public int health;
     public int exp;
+    public int expForLvl;
     public int level;
     public int armor;
     public GameObject XPBar;

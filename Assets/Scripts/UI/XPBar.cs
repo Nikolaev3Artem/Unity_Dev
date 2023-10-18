@@ -10,6 +10,7 @@ public class XPBar : MonoBehaviour
     public GameObject Player;
     private Text _PlayerLvlText;
     private PlayerData _player_data;
+    public TextMeshProUGUI XPUI;
 
     public void SetXPBarValue(int value)
     {
@@ -17,6 +18,8 @@ public class XPBar : MonoBehaviour
         _player_data.exp += value;
         // Міняємо данні слайдера відповідно до данних гравця
         XPBar_Slider.value = _player_data.exp;
+        XPBar_Slider.maxValue = _player_data.expForLvl;
+        XPUI.text = _player_data.exp + "/" + _player_data.expForLvl;
         // Перевірити, чи досвід перевищив максимальне значення
         if (_player_data.exp >= XPBar_Slider.maxValue)
         {
