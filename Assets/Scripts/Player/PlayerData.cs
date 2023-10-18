@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
     public int health;
+    public int maxHealth;
     public int exp;
     public int expForLvl;
     public int level;
