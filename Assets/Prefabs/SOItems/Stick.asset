@@ -19,4 +19,4 @@ MonoBehaviour:
   Amount: 4
   Stackable: 1
   MaxStack: 2
-  collectableExp: 50
+  collectableExp: 3
