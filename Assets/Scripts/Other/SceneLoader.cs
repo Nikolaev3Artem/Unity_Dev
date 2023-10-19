@@ -12,7 +12,7 @@ public class SceneLoader : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-     public void QuitGame()
+    public void QuitGame()
     {
         Application.Quit();
         Debug.Log("Game is exiting");
