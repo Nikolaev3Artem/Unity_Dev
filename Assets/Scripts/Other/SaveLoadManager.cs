@@ -7,18 +7,19 @@ using UnityEngine;
 
 public class SaveLoadManager : MonoBehaviour
 {
+    public static SaveLoadManager control;
     string filePath;
     //public List<GameObject> EnemySaves = new List<GameObject>();
     public List<GameObject> ObjectsSaves = new List<GameObject>();
 
-    private void Start()
+    public void Awake()
     {
-        filePath = Application.persistentDataPath + "/save.gamesave";
+        filePath = Application.persistentDataPath + "/GameSave.data";
+        LoadGame();
     }
 
     public void SaveGame()
     {
-
         BinaryFormatter bf = new BinaryFormatter();
         FileStream fs = new FileStream(filePath, FileMode.Create);
 
@@ -33,6 +34,7 @@ public class SaveLoadManager : MonoBehaviour
     {
         if (!File.Exists(filePath))
         {
+            Debug.Log("Game Saving not found!");
             return;
         }
         BinaryFormatter bf = new BinaryFormatter();
@@ -40,7 +42,6 @@ public class SaveLoadManager : MonoBehaviour
 
         Save save = (Save)bf.Deserialize(fs);
         fs.Close();
-
         int i = 0;
         foreach (var item in save.ObjectsData)
         {
@@ -70,10 +71,12 @@ public class Save
     public struct ObjectsSaveData
     {
         public Vec3 Position;
+        public bool Exists;
 
-        public ObjectsSaveData(Vec3 pos)
+        public ObjectsSaveData(Vec3 pos, bool exists)
         {
             Position = pos;
+            Exists = exists;
         }
 
     }
@@ -87,7 +90,12 @@ public class Save
             if (go != null)
             {
                 Vec3 pos = new Vec3(go.transform.position.x, go.transform.position.y, go.transform.position.z);
-                ObjectsData.Add(new ObjectsSaveData(pos));
+                ObjectsData.Add(new ObjectsSaveData(pos, true));
+            }
+            else
+            {
+                Vec3 pos = new Vec3(0,0,0);
+                ObjectsData.Add(new ObjectsSaveData(pos,false));
             }
         }
     }

@@ -15,6 +15,13 @@ public class SOHolder : MonoBehaviour
     }
     public void LoadData(Save.ObjectsSaveData save)
     {
-        transform.position = new Vector3(save.Position.x, save.Position.y, save.Position.z);
+        if (save.Exists)
+        {
+            transform.position = new Vector3(save.Position.x, save.Position.y, save.Position.z);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
