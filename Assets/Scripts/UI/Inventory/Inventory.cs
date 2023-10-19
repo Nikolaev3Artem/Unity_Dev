@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -78,7 +79,7 @@ public class Inventory : MonoBehaviour
         // Також перевіряємо чи є місце в інвентарі, порівнюючи кількість наявних предметів і максимально можливу кількість
         if (pickUp && Input.GetKeyDown(KeyCode.E) && InventoryItems.Count < inventoryMaxSize)
         {
-            PickUp(game_obj);
+            game_obj.GetComponent<SOHolder>().PickUp(game_obj);
             AddItem(item_data);
         }
     }
@@ -105,9 +106,5 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // Функція для знищення об'єкту після підняття
-    void PickUp(GameObject obj)
-    {
-        Destroy(obj);
-    }
+
 }
