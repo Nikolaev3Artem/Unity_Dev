@@ -19,11 +19,13 @@ public class IventoryWindow : MonoBehaviour
         Redraw();
     }
 
+    // Перемальовування інвентару при додаванні нового предмета
     private void Inventory_OnItemListChanged(object sender, System.EventArgs e)
     {
         Redraw();
     }
 
+    // функція перемальовування
     void Redraw()
     {
         ClearDown();
@@ -34,6 +36,7 @@ public class IventoryWindow : MonoBehaviour
         
     }
 
+    // Функція додавання іконки
     void AddIcon(ItemSO item)
     {
         // Создайте игровой объект для ячейки инвентаря
@@ -66,6 +69,7 @@ public class IventoryWindow : MonoBehaviour
         drawnIcons.Add(icon);
     }
 
+    // Функція очистки іконок в UI інвентарю
     void ClearDown()
     {
         foreach (var icon in drawnIcons)

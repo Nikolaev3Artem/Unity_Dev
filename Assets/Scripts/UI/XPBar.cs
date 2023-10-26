@@ -6,25 +6,28 @@ using UnityEngine.UI;
 public class XPBar : MonoBehaviour
 {
     private static Slider XPBar_Slider;
+    public int MaxToLevelUp;
     public TextMeshProUGUI PlayerLvlUI;
     public GameObject Player;
     private Text _PlayerLvlText;
     private PlayerData _player_data;
-    /// <summary>
-    /// Sets the health bar value
-    /// </summary>
-    /// <param name="value">should be between 0 to 1</param>
+    public TextMeshProUGUI XPUI;
+
     public void SetXPBarValue(int value)
     {
-        // Оновити досвід
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         _player_data.exp += value;
+        // МіпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         XPBar_Slider.value = _player_data.exp;
-        // Перевірити, чи досвід перевищив максимальне значення
+        XPBar_Slider.maxValue = _player_data.expForLvl;
+        XPUI.text = _player_data.exp + "/" + _player_data.expForLvl;
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (_player_data.exp >= XPBar_Slider.maxValue)
         {
+            // ДіпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             int excessExp = _player_data.exp - (int)XPBar_Slider.maxValue;
 
-            // Збільшити рівень і оновити досвід
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
             LevelUp(excessExp);
         }
     }
@@ -32,32 +35,30 @@ public class XPBar : MonoBehaviour
 
     private void LevelUp(int excessExp)
     {
-        // Збільшити рівень на 1
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 1
         _player_data.level += 1;
 
-        // Оновити досвід на залишок після рівня
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         _player_data.exp = excessExp;
 
-        // Оновити відображення рівня
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         PlayerLvlUI.text = _player_data.level.ToString();
 
-        // Оновити слайдер з досвідом
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         XPBar_Slider.value = _player_data.exp;
+
+        // Р·РјС–РЅСЋС”С‚СЊСЃСЏ РјР°РєСЃ РєС–Р»СЊРєС–СЃС‚СЊ РґРѕСЃРІС–РґСѓ РґР»СЏ Р»РІР» Р°РїР°
+        _player_data.expForLvl += 1;
+
+
+
     }
 
-
-    public static float GetXPBarValue()
-    {
-        return XPBar_Slider.value;
-    }
-
-    /// <summary>
-    /// Initialize the variable
-    /// </summary>
-    /// 
     private void Start()
     {
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         XPBar_Slider = GetComponent<Slider>();
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         _player_data = Player.GetComponent<PlayerData>();
     }
 }
